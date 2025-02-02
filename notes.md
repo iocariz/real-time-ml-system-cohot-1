@@ -1,5 +1,7 @@
 # GIT
 **start using git:** git init
+**ver los commits anteriores:** git log
+**volver al pasado** git checkout [hash]
 
 # GITHUB
 git remote add origin https://github.com/iocariz/real-time-ml-system-cohot-1.git
@@ -16,3 +18,4 @@ git push -u origin main
 
 # docker compose
 **run** docker compose -f redpanda.yml up
+**create image** docker build -t trade-producer .
