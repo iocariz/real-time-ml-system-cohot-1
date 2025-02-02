@@ -5,7 +5,7 @@ from loguru import logger
 from quixstreams import Application
 
 from src.kraken_apy import KrakenWebsocketTradeAPI
-from src import config
+from src.config import config
 
 
 def produce_trade(

@@ -1,23 +1,20 @@
-FROM python:3.11-slim   
+# Use an official Python runtime as a parent image
+FROM python:3.11-slim AS base
 
-RUN pip install poetry==1.8.2
-
-#strean output to terminal
+# Set environment variables
 ENV PYTHONUNBUFFERED=1
-
-WORKDIR /app
-
-# Set PYTHONPATH to include /app
 ENV PYTHONPATH=/app
 
-#copy pyproject.toml and poetry.lock to the container
+# Set the working directory
+WORKDIR /app
 
+# Install Poetry and dependencies in a single layer
 COPY pyproject.toml poetry.lock /app/
+RUN pip install --no-cache-dir poetry==1.8.2 && \
+    poetry install --no-root --no-dev
 
-#install dependencies from pyproject.toml
-RUN poetry install
-
-#copy all source code to the container
+# Copy the rest of the application code
 COPY . /app
 
+# Run the application
 CMD ["poetry", "run", "python", "src/main.py"]
