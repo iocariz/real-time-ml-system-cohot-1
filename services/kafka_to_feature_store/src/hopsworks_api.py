@@ -5,7 +5,7 @@ def push_date_to_feature_store(
         feature_group_name: str,
         feature_group_version: int,
         date: str,
-) -> None
+) -> None:
     """
     Writes the date to the feature store.
     
