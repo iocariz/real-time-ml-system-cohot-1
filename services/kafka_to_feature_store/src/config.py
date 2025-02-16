@@ -2,14 +2,19 @@ import os
 from dotenv import load_dotenv, find_dotenv
 from pydantic_settings import BaseSettings
 
-# Load environment variables
+# load my .env file variables as environment variables so I can access them
+# with os.environ[] statements
 load_dotenv(find_dotenv())
 
-from pydantic_settings import BaseSettings
-
 class Config(BaseSettings):
-    hopsworks_project_name: str = os.getenv('HOPSWORKS_PROJECT_NAME')
-    hopsworks_api_key: str = os.getenv('HOPSWORKS_API_KEY')
+    
+    kafka_broker_address: str = 'localhost:19092'
+    kafka_topic: str
+    feature_group_name: str
+    feature_group_version: int
 
+    # required to authenticate with Hopsworks API
+    hopsworks_project_name: str
+    hopsworks_api_key: str
 
 config = Config()
